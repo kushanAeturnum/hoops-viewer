@@ -1,5 +1,5 @@
 #toolBar {
-    position: absolute;
+    position: fixed;
     display: none;
     user-select: none;
     z-index: 5;
@@ -201,11 +201,7 @@
     background-position: -47px -5px;
 }
 
-.toolbar-bottom {
-    width: 32px;
-    height: 32px;
-    background-position: -89px -5px;
-}
+
 
 .toolbar-bottom.hover {
     width: 32px;
