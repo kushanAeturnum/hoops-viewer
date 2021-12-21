@@ -35,7 +35,7 @@
     .noteTextElement textArea {
         margin: 5px;
         width: 200px;
-        height: 142px;
+        height: 100px;
         z-index: 2;
         resize: none;
     }
@@ -73,3 +73,14 @@
             display: block;
             background-position: -176px -96px;
         }
+
+        /* @Gowthamy chnages */
+        button.commentBtn {
+            padding: 9px 23px;
+            margin-left: 6px;
+            margin-right: 6px;
+        }
+        button.cancelBtn {
+            padding: 9px 23px;
+        }
+
