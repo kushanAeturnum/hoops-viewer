@@ -21,12 +21,12 @@ function App() {
 
       var screenConfiguration = (md.mobile() !== null) ? window.Communicator.ScreenConfiguration.Mobile : window.Sample.screenConfiguration;
       var uiConfig = {
-          containerId: "root",
+          containerId: "fullContainer",
           screenConfiguration: screenConfiguration,
           endpointUri: "./data/microengine.scs",
       }
        hwv =new window.Communicator.WebViewer({
-        containerId: "root",
+        containerId: "fullContainer",
         endpointUri: "./data/microengine.scs",
         });
 
@@ -34,14 +34,14 @@ function App() {
 
       hwv.start();
   }, function (errorReason) {
-      var errorDialog = new window.Communicator.Ui.UiDialog("content");
+      var errorDialog = new window.Communicator.Ui.UiDialog("root");
       errorDialog.setTitle("Viewer Error");
       errorDialog.setText(errorReason);
       errorDialog.show();
   });
   },[])
   return (
-    <Fragment>
+    <div id='fullContainer'>
       <div id="content">
         <div id="viewerContainer"></div>
         {/* <!-- Toolbar HTML--> */}
@@ -636,8 +636,9 @@ function App() {
                 <button id="snapshot-dialog-cancel-button">Close</button>
             </div>
         </div>
+        
     </div>
-    </Fragment>
+    </div>
     
   );
 }
