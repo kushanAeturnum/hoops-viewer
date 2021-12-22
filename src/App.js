@@ -1,13 +1,56 @@
 import './App.css';
 import React, {Fragment, useEffect} from 'react';
-import {Helmet} from "react-helmet";
-// import Communicator from 'communicator';
+import { CustomOperator } from './js/CustomOperator';
 
 function App() {
   console.log(window);
   let hwv = null;
   let ui = null;
   let md = new window.MobileDetect(window.navigator.userAgent);
+  var activeItem = { "_noteElementId": "5e43a28d-0b64-4d1c-ada0-4d60362d6332",
+  "_partId": 71,
+  "_position": {x: 35.77206802368164,
+    y: 36.40321731567383,
+    z: 3.1750006675720215},
+  "_selectionNormal": {
+    x: -2.4082695693237393e-8,
+    y: 0.328282967290209,
+    z: 0.9445794267223562
+  },
+  "_selectionPosition": {
+    x: 35.77206889931347,
+    y: 34.92291932080661,
+    z: -1.0843076591581848
+  },
+  "_sphereInstanceId": -65,
+  "_sphereRadius": 0.03,
+  "_stemInstanceId":  -64,
+  "_text": "Test",
+  "_uniqueId": "348021ee-cd94-49be-b488-4ef1c2b6ff0c"
+}
+
+  var cameraLoaction = {
+    "position": {
+        "x": -42.22550722982972,
+        "y": 54.88037014259887,
+        "z": 2.5966051102457186
+    },
+    "target": {
+        "x": 38.98509685626526,
+        "y": 24.469803458892788,
+        "z": -47.61311256955779
+    },
+    "up": {
+        "x": 0.5318762346284513,
+        "y": 0.739695885515422,
+        "z": 0.4122592242618913
+    },
+    "width": 100.20469070538482,
+    "height": 100.20469070538482,
+    "projection": 0,
+    "nearLimit": 0.01,
+    "className": "Communicator.Camera"
+}
   useEffect(() => {
     window.Sample.createViewer().then(function (viewer) {
       hwv = viewer;
@@ -30,9 +73,35 @@ function App() {
         endpointUri: "./data/microengine.scs",
         });
 
-      ui = new window.Communicator.Ui.Desktop.DesktopUi(hwv, uiConfig);
-
+      ui = new window.Communicator.Ui.Desktop.DesktopUi(hwv, uiConfig);    
+      hwv.setCallbacks({
+        sceneReady: () => {
+            // hwv.view.setBackgroundColor(window.Communicator.Color.blue(), window.Communicator.Color.white());
+            // var currentcamera = hwv.view.getCamera();
+        //     var jsoncamera = cameraLoaction.toJson();
+      
+         var   newcamera = window.Communicator.Camera.fromJson(cameraLoaction);
+         console.log("newcamera",cameraLoaction)
+        hwv.view.setCamera(newcamera);
+        // hwv.selectionManager.add(activeItem._noteElementId)
+        },
+        // modelStructureReady: () => {
+        //     document.getElementById('ModelStructureReady').innerHTML = 'Model Structure Ready';
+        // },
+        camera: () => {
+            var currentcamera = hwv.view.getCamera();
+            var jsoncamera = currentcamera.toJson();
+            console.log("jsoncamera",jsoncamera)
+        //   hwv.view.setCamera(newcamera);
+        },
+    });
       hwv.start();
+      const myOperator = new CustomOperator(hwv);
+      var myOperatorHandle = hwv.operatorManager.registerCustomOperator(myOperator);
+      hwv.operatorManager.push(myOperatorHandle);
+      var part = CustomOperator._partId
+      console.log("_partId",part)
+    
   }, function (errorReason) {
       var errorDialog = new window.Communicator.Ui.UiDialog("root");
       errorDialog.setTitle("Viewer Error");
