@@ -1,5 +1,6 @@
 import React ,{useEffect, useState} from 'react';
 import activeNoteText from '../data/activeNoteText'
+import { CustomOperator } from '../js/CustomOperator';
 
 const markupData =  {"views":[],"notes":[{"uniqueId":"c448d99e-1950-413a-bb79-74e4ff064d61","className":"Communicator.Markup.Note.NoteText","selectionPosition":{"x":16.362143795455268,"y":11.341463857846065,"z":-9.75108803089779},"selectionNormal":{"x":0,"y":-0.8461166201787195,"z":0.53299780961777},"text":"xcvxcv","color":{"r":255,"g":255,"b":255},"partId":20}],"measurement":[],"lines":[]}
 
@@ -9,7 +10,77 @@ const HoopsViewer = (props) => {
    const [tmphwv, setTmphwv] = useState(null)
   let hwv = null;
   let ui = null;
-  let md = new window.MobileDetect(window.navigator.userAgent);
+    let md = new window.MobileDetect(window.navigator.userAgent);
+    
+    var activeItem = { "_noteElementId": "5e43a28d-0b64-4d1c-ada0-4d60362d6332",
+    "_partId": 71,
+    "_position": {x: 35.77206802368164,
+      y: 36.40321731567383,
+      z: 3.1750006675720215},
+    "_selectionNormal": {
+      x: -2.4082695693237393e-8,
+      y: 0.328282967290209,
+      z: 0.9445794267223562
+    },
+    "_selectionPosition": {
+      x: 35.77206889931347,
+      y: 34.92291932080661,
+      z: -1.0843076591581848
+    },
+    "_sphereInstanceId": -65,
+    "_sphereRadius": 0.03,
+    "_stemInstanceId":  -64,
+    "_text": "Test",
+    "_uniqueId": "348021ee-cd94-49be-b488-4ef1c2b6ff0c"
+  }
+  
+    var cameraLoaction = {
+      "position": {
+          "x": -42.22550722982972,
+          "y": 54.88037014259887,
+          "z": 2.5966051102457186
+      },
+      "target": {
+          "x": 38.98509685626526,
+          "y": 24.469803458892788,
+          "z": -47.61311256955779
+      },
+      "up": {
+          "x": 0.5318762346284513,
+          "y": 0.739695885515422,
+          "z": 0.4122592242618913
+      },
+      "width": 100.20469070538482,
+      "height": 100.20469070538482,
+      "projection": 0,
+      "nearLimit": 0.01,
+      "className": "Communicator.Camera"
+    }
+
+    // var cameraLoaction = {
+    //     "position": {
+    //         "x": 49.85546164375514,
+    //         "y": -54.262069629585696,
+    //         "z": 11.071256387145588
+    //     },
+    //     "target": {
+    //         "x": 38.182303316112296,
+    //         "y": 25.715833636809023,
+    //         "z": -48.15925007115907
+    //     },
+    //     "up": {
+    //         "x": 0.6578879306573404,
+    //         "y": 0.5078667714801122,
+    //         "z": 0.5561068360681874
+    //     },
+    //     "width": 100.20469070538482,
+    //     "height": 100.20469070538482,
+    //     "projection": 0,
+    //     "nearLimit": 0.01,
+    //     "className": "Communicator.Camera"
+    //   }
+
+    
   useEffect(() => {
     window.Sample.createViewer().then(function (viewer) {
       hwv = viewer;
@@ -32,10 +103,37 @@ const HoopsViewer = (props) => {
         endpointUri: "./data/microengine.scs",
         });
 
-      ui = new window.Communicator.Ui.Desktop.DesktopUi(hwv, uiConfig);
+        ui = new window.Communicator.Ui.Desktop.DesktopUi(hwv, uiConfig);
+        
+        hwv.setCallbacks({
+            sceneReady: () => {
+                // hwv.view.setBackgroundColor(window.Communicator.Color.blue(), window.Communicator.Color.white());
+                // var currentcamera = hwv.view.getCamera();
+            //     var jsoncamera = cameraLoaction.toJson();
+          
+             var   newcamera = window.Communicator.Camera.fromJson(cameraLoaction);
+             console.log("newcamera",cameraLoaction)
+            hwv.view.setCamera(newcamera);
+            // hwv.selectionManager.add(activeItem._noteElementId)
+            },
+            // modelStructureReady: () => {
+            //     document.getElementById('ModelStructureReady').innerHTML = 'Model Structure Ready';
+            // },
+            camera: () => {
+                var currentcamera = hwv.view.getCamera();
+                var jsoncamera = currentcamera.toJson();
+                console.log("jsoncamera",jsoncamera)
+            //   hwv.view.setCamera(newcamera);
+            },
+        });
 
       hwv.start();
-      console.log(hwv);
+        console.log(hwv);
+        const myOperator = new CustomOperator(hwv);
+      var myOperatorHandle = hwv.operatorManager.registerCustomOperator(myOperator);
+      hwv.operatorManager.push(myOperatorHandle);
+      var part = CustomOperator._partId
+        console.log("_partId", part)
       
       
       setTmphwv(hwv)
@@ -50,9 +148,31 @@ const HoopsViewer = (props) => {
   useEffect(() => {
    if(props.clickedId !== null){
        console.log(tmphwv);
-    //    let markup = new window.NoteTextManager(tmphwv);
-    //   const markupData = JSON.stringify(tmphwv.markupManager.exportMarkup());
-    //   console.log(markupData);
+          var cameraLoactionNew = {
+        "position": {
+            "x": 49.85546164375514,
+            "y": -54.262069629585696,
+            "z": 11.071256387145588
+        },
+        "target": {
+            "x": 38.182303316112296,
+            "y": 25.715833636809023,
+            "z": -48.15925007115907
+        },
+        "up": {
+            "x": 0.6578879306573404,
+            "y": 0.5078667714801122,
+            "z": 0.5561068360681874
+        },
+        "width": 100.20469070538482,
+        "height": 100.20469070538482,
+        "projection": 0,
+        "nearLimit": 0.01,
+        "className": "Communicator.Camera"
+      }
+       
+       var   newcamera = window.Communicator.Camera.fromJson(cameraLoactionNew);
+       tmphwv.view.setCamera(newcamera);
        tmphwv.markupManager.loadMarkupData(markupData);
     // console.log(new window.Communicator.Markup._MarkupViewConstruction("test"));
       
