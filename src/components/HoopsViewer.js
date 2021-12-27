@@ -18,6 +18,8 @@ const HoopsViewer = (props) => {
     const [tmphwv, setTmphwv] = useState(null);
     const [newCam, setNewCam] = useState(null);
 
+    console.log('newcam is', newCam);
+
   let hwv = null;
   let ui = null;
     let md = new window.MobileDetect(window.navigator.userAgent);
@@ -100,23 +102,10 @@ const HoopsViewer = (props) => {
             //     var jsoncamera = cameraLoaction.toJson();
           
              var   newcamera = window.Communicator.Camera.fromJson(cameraLoaction);
-            // console.log("newcamera",cameraLoaction)
-                hwv.view.setCamera(newcamera);
-                setNewCam(hwv.view.setCamera(newcamera));
-            // hwv.selectionManager.add(activeItem._noteElementId)
-            },
-
-           
-            // modelStructureReady: () => {
-            //     document.getElementById('ModelStructureReady').innerHTML = 'Model Structure Ready';
-            // },
-            camera: () => {
-                var currentcamera = hwv.view.getCamera();
-                var jsoncamera = currentcamera.toJson();
-               // console.log("jsoncamera",jsoncamera)
-            //   hwv.view.setCamera(newcamera);
+                setNewCam(newcamera);
             },
         });
+        
         
 
       hwv.start();
