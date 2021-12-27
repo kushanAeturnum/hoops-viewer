@@ -193,7 +193,7 @@ const HoopsViewer = (props) => {
     // });
     //console.log("clicked", activeNoteText);
    }
-}, [props])
+}, [props.clickedId])
 
     return (
       <div id="mainHoops">

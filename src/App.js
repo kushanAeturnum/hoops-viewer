@@ -749,6 +749,7 @@ import './App.css';
 import React, {useState} from 'react';
 import HoopsViewer from './components/HoopsViewer';
 import CommentViewer from './components/CommentViewer';
+import 'bootstrap/dist/css/bootstrap.min.css';
 //import { CustomOperator } from './js/CustomOperator';
 
 function App() {

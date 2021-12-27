@@ -26378,18 +26378,19 @@ if(a._activeNoteText !== null){
 				_commentButton.className = "commentBtn";
 				_commentButton.onclick = async function(_textArea) {
 					// alert("Button is clicked",a._activeNoteText);
+					
 					console.log(a._activeNoteText)
 					var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwNjEyNDM4LCJpYXQiOjE2NDA1NzY0Mzh9.fYK--rxnrejA5jTg7AXIb0Vt3pN83SW-a15ucK8m_D8';
 					var body = {
 						anchorLocation: JSON.stringify(a._activeNoteText._selectionPosition),
 						anchorType: "CELL",
-						businessKey: "c794ea6c-5395-4402-bda5-74cfdea78bd5",
+						businessKey: "6aef8223-98e4-4cae-93ea-5b15d357ffd8",
 						messageBody: a._activeNoteText._text,
-						messageTittle: "",
-						rfqPreQuoteId: "61c17bc2e13c01425d1c3a5f",
+						messageTittle:`Material Cost part- ${a._activeNoteText._partId}`,
+						rfqPreQuoteId: "61c96c51e13c01425d1c3a73",
 						senarioDataItemId: "619bd5476651e3ca4caab9c3",
 						sendNotificationStatus: true,
-						supplierCommentChannelId: "ccbc224e-622b-11ec-b78e-e9b71b80d45f",
+						supplierCommentChannelId: "4dba5c05-66e7-11ec-bb56-777a0c3ed608",
 						tagUserIdList: [],
 					// 	selected: { "_noteElementId": a._activeNoteText._noteTextManager._activeItem._noteElementId,
 					// 	"_partId": a._activeNoteText._noteTextManager._activeItem._partId,
