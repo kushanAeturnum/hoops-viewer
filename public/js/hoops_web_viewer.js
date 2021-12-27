@@ -1,4 +1,32 @@
-var comments = [];
+var comments =[
+    {
+        "createdBy": "619467caeedda06e76d40d51",
+        "createdTime": "2021-12-27T05:49:52.129744Z",
+        "updatedBy": "619467caeedda06e76d40d51",
+        "updatedTime": "2021-12-27T05:49:52.129744Z",
+        "id": "8633d30f-dc46-4128-8927-2462e1a05137",
+        "senderId": {
+            "createdBy": "ADMIN",
+            "createdTime": "2021-11-17T02:24:10.905Z",
+            "updatedBy": null,
+            "updatedTime": "2021-11-17T02:24:10.905Z",
+            "id": "619467caeedda06e76d40d51",
+            "userName": "woodwardbsmuser1",
+            "name": "Woodward BSM User 1",
+            "emailAddress": "woodwardbsmuser@gmail.com",
+            "userImage": "https://apriori-images.s3.amazonaws.com/user2.jpg",
+            "status": "ACTIVE",
+            "tenantId": null,
+            "active": true
+        },
+        "tagUsersList": [],
+        "messageBody": "test",
+        "status": "DRAFT",
+        "tenantId": "",
+        "sendNotificationStatus": true,
+        "notify": false
+    }
+];
 var __awaiter = this && this.__awaiter || function(d, h, f, a) {
 	return new(f || (f = Promise))(function(e, c) {
 		function b(b) {
@@ -26281,21 +26309,64 @@ d.Subscript3 = "\u00b3"
 				this._container = document.createElement("div");
 				this._container.className = "noteTextElement";
 				this._viewer = a;
+				var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwNjEyNDM4LCJpYXQiOjE2NDA1NzY0Mzh9.fYK--rxnrejA5jTg7AXIb0Vt3pN83SW-a15ucK8m_D8';
+				// var comment_wrapper_container = document.createElement("div");
+		// comment_wrapper_container.className ="comment_wrapper_container"
+		// 	comments.forEach(function(c) {
+				
+		// 			var comment_wrapper = document.createElement("div");
+		// 			comment_wrapper.className ="comment_wrapper row"
+		// 			var profile_wrapper = document.createElement("div");
+		// 			profile_wrapper.className ="col-sm-3"
+		// 			comment_wrapper.appendChild(profile_wrapper);
+		// 			var profile_image_wrapper = document.createElement("img");
+		// 			profile_image_wrapper.className ="profile_image_wrapper";
+		// 			profile_image_wrapper.src= c.senderId.userImage;
+		// 			profile_image_wrapper.alt = "Profile";
+		// 			profile_wrapper.appendChild(profile_image_wrapper);
+		// 			comment_wrapper.appendChild(profile_wrapper);
+		// 			comment_wrapper_container.appendChild(comment_wrapper);
 
-				// comments.forEach(function(c) {
-				// 	var comment_wrapper = document.createElement("div");
-				// 	comment_wrapper.className ="comment_wrapper row"
-				// 	var profile_wrapper = document.createElement("div");
-				// 	profile_wrapper.className ="col-sm-3"
-				// 	comment_wrapper.appendChild(profile_wrapper);
-				// 	var profile_image_wrapper = document.createElement("img");
-				// 	profile_image_wrapper.className ="profile_image_wrapper";
-				// 	profile_image_wrapper.src= c.senderId.userImage;
-				// 	profile_image_wrapper.alt = "Profile";
-				// 	profile_wrapper.appendChild(profile_image_wrapper);
-				// 	this._container.appendChild(comment_wrapper);
+		// 		});
+		// 		this._container.appendChild(comment_wrapper_container);
+if(a._activeNoteText !== null){
+	fetch(`http://apriordevapp-env.eba-ajmpa4mr.us-east-1.elasticbeanstalk.com/api/ws/comment-threads/prequote-rfqs/61c17bc2e13c01425d1c3a5f/comment-channels/ccbc224e-622b-11ec-b78e-e9b71b80d45f/anchor-location/${JSON.stringify(a?._activeNoteText?._selectionPosition)}/anchor-type/CELL`, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`
+		}
+	}).then(response => response.json())
+	.then(data => {
+		console.log('Success:', data);
+		comments = data.data.comments;
+		var comment_wrapper_container = document.createElement("div");
+		comment_wrapper_container.className ="comment_wrapper_container"
+			comments.forEach(function(c) {
+				
+					var comment_wrapper = document.createElement("div");
+					comment_wrapper.className ="comment_wrapper row"
+					var profile_wrapper = document.createElement("div");
+					profile_wrapper.className ="col-sm-3"
+					comment_wrapper.appendChild(profile_wrapper);
+					var profile_image_wrapper = document.createElement("img");
+					profile_image_wrapper.className ="profile_image_wrapper";
+					profile_image_wrapper.src= c.senderId.userImage;
+					profile_image_wrapper.alt = "Profile";
+					profile_wrapper.appendChild(profile_image_wrapper);
+					comment_wrapper.appendChild(profile_wrapper);
+					comment_wrapper_container.appendChild(comment_wrapper);
 
-				// });
+				});
+				this._container.appendChild(comment_wrapper_container);
+	})
+	.catch((error) => {
+		console.error('Error:', error);
+	});
+}
+				
+
+			
 
 				this._textArea = document.createElement("textarea");
 				this._textArea.oninput = function() {
@@ -26308,9 +26379,9 @@ d.Subscript3 = "\u00b3"
 				_commentButton.onclick = async function(_textArea) {
 					// alert("Button is clicked",a._activeNoteText);
 					console.log(a._activeNoteText)
-					var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwMjY0MDYxLCJpYXQiOjE2NDAyMjgwNjF9.16PxdxXBnTlKR7BUxbR0jm_TD868G6UO3dDYy1ytLQo';
+					var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwNjEyNDM4LCJpYXQiOjE2NDA1NzY0Mzh9.fYK--rxnrejA5jTg7AXIb0Vt3pN83SW-a15ucK8m_D8';
 					var body = {
-						anchorLocation: a._activeNoteText._position.toString(),
+						anchorLocation: JSON.stringify(a._activeNoteText._selectionPosition),
 						anchorType: "CELL",
 						businessKey: "c794ea6c-5395-4402-bda5-74cfdea78bd5",
 						messageBody: a._activeNoteText._text,

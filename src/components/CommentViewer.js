@@ -4,7 +4,7 @@ import './CommentViewer.css';
 const CommentViewer = (props) => {
 
     const [data, setData] = useState(null)
-    var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwMjY0MDYxLCJpYXQiOjE2NDAyMjgwNjF9.16PxdxXBnTlKR7BUxbR0jm_TD868G6UO3dDYy1ytLQo';
+    var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwNjE3NTIxLCJpYXQiOjE2NDA1ODE1MjF9.dY2IPWeRhz2k9sB0_W7I1FsEqwUZXOPcX0YX-GvVvWk';
     var prequote_rfq_id = "61c17bc2e13c01425d1c3a5f";
     var comment_channel_id = "ccbc224e-622b-11ec-b78e-e9b71b80d45f";
     useEffect(() => {

@@ -105,27 +105,27 @@ const HoopsViewer = (props) => {
 
         ui = new window.Communicator.Ui.Desktop.DesktopUi(hwv, uiConfig);
         
-        hwv.setCallbacks({
-            sceneReady: () => {
-                // hwv.view.setBackgroundColor(window.Communicator.Color.blue(), window.Communicator.Color.white());
-                // var currentcamera = hwv.view.getCamera();
-            //     var jsoncamera = cameraLoaction.toJson();
+        // hwv.setCallbacks({
+        //     sceneReady: () => {
+        //         // hwv.view.setBackgroundColor(window.Communicator.Color.blue(), window.Communicator.Color.white());
+        //         // var currentcamera = hwv.view.getCamera();
+        //     //     var jsoncamera = cameraLoaction.toJson();
           
-             var   newcamera = window.Communicator.Camera.fromJson(cameraLoaction);
-             console.log("newcamera",cameraLoaction)
-            hwv.view.setCamera(newcamera);
-            // hwv.selectionManager.add(activeItem._noteElementId)
-            },
-            // modelStructureReady: () => {
-            //     document.getElementById('ModelStructureReady').innerHTML = 'Model Structure Ready';
-            // },
-            camera: () => {
-                var currentcamera = hwv.view.getCamera();
-                var jsoncamera = currentcamera.toJson();
-                console.log("jsoncamera",jsoncamera)
-            //   hwv.view.setCamera(newcamera);
-            },
-        });
+        //      var   newcamera = window.Communicator.Camera.fromJson(cameraLoaction);
+        //      console.log("newcamera",cameraLoaction)
+        //     hwv.view.setCamera(newcamera);
+        //     // hwv.selectionManager.add(activeItem._noteElementId)
+        //     },
+        //     // modelStructureReady: () => {
+        //     //     document.getElementById('ModelStructureReady').innerHTML = 'Model Structure Ready';
+        //     // },
+        //     camera: () => {
+        //         var currentcamera = hwv.view.getCamera();
+        //         var jsoncamera = currentcamera.toJson();
+        //         console.log("jsoncamera",jsoncamera)
+        //     //   hwv.view.setCamera(newcamera);
+        //     },
+        // });
 
       hwv.start();
         console.log(hwv);
