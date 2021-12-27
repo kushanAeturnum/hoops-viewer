@@ -2,12 +2,22 @@ import React ,{useEffect, useState} from 'react';
 import activeNoteText from '../data/activeNoteText'
 import { CustomOperator } from '../js/CustomOperator';
 
-const markupData =  {"views":[],"notes":[{"uniqueId":"c448d99e-1950-413a-bb79-74e4ff064d61","className":"Communicator.Markup.Note.NoteText","selectionPosition":{"x":16.362143795455268,"y":11.341463857846065,"z":-9.75108803089779},"selectionNormal":{"x":0,"y":-0.8461166201787195,"z":0.53299780961777},"text":"xcvxcv","color":{"r":255,"g":255,"b":255},"partId":20}],"measurement":[],"lines":[]}
 
+const markupData = {
+    
+    "notes": [{ "uniqueId": "c448d99e-1950-413a-bb79-74e4ff064d61", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { "x": 16.362143795455268, "y": 11.341463857846065, "z": -9.75108803089779 }, "selectionNormal": { "x": 0, "y": -0.8461166201787195, "z": 0.53299780961777 }, "text": "xcvxcv", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 },
+        { "uniqueId": "b0b826e7-1f4a-4936-bdc7-b6a96d2837e5", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 53.09444439496133, y: 17.35680340879935, z: -8.714712965618673 }, "selectionNormal": { x: 0.39381808307983834, y: -0.4877177486906548, z: 0.7791268927789881 }, "text": "nmnmnmnnm", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 },
+        { "uniqueId": "fccbbfb3-27ba-4c59-86e5-1af03bbc1232", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 32.6057585177432, y: 9.063699915930556, z: -15.342845537682479 }, "selectionNormal": { x: 0, y: -0.9777586050227087, z: 0.2097334267684736 }, "text": "yyyyyyyy", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 },
+        { "uniqueId": "2758607b-a1b2-41a3-b07b-2182ef2a9bfb", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 8.201865731694852, y: 24.70312729512807, z: -52.81000000124004 }, "selectionNormal": {x: 0, y: 0, z: 1}, "text": ["kkkkkkkkkkk",'nmnmnmnmnmnmnm','ghghghhggh'], "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 }],
+    "measurement": [],
+    "lines": []
+};
 
 const HoopsViewer = (props) => {
    // console.log(window);
-   const [tmphwv, setTmphwv] = useState(null)
+    const [tmphwv, setTmphwv] = useState(null);
+    const [newCam, setNewCam] = useState(null);
+
   let hwv = null;
   let ui = null;
     let md = new window.MobileDetect(window.navigator.userAgent);
@@ -57,30 +67,7 @@ const HoopsViewer = (props) => {
       "className": "Communicator.Camera"
     }
 
-    // var cameraLoaction = {
-    //     "position": {
-    //         "x": 49.85546164375514,
-    //         "y": -54.262069629585696,
-    //         "z": 11.071256387145588
-    //     },
-    //     "target": {
-    //         "x": 38.182303316112296,
-    //         "y": 25.715833636809023,
-    //         "z": -48.15925007115907
-    //     },
-    //     "up": {
-    //         "x": 0.6578879306573404,
-    //         "y": 0.5078667714801122,
-    //         "z": 0.5561068360681874
-    //     },
-    //     "width": 100.20469070538482,
-    //     "height": 100.20469070538482,
-    //     "projection": 0,
-    //     "nearLimit": 0.01,
-    //     "className": "Communicator.Camera"
-    //   }
 
-    
   useEffect(() => {
     window.Sample.createViewer().then(function (viewer) {
       hwv = viewer;
@@ -104,6 +91,7 @@ const HoopsViewer = (props) => {
         });
 
         ui = new window.Communicator.Ui.Desktop.DesktopUi(hwv, uiConfig);
+
         
         // hwv.setCallbacks({
         //     sceneReady: () => {
@@ -133,10 +121,11 @@ const HoopsViewer = (props) => {
       var myOperatorHandle = hwv.operatorManager.registerCustomOperator(myOperator);
       hwv.operatorManager.push(myOperatorHandle);
       var part = CustomOperator._partId
-        console.log("_partId", part)
-      
-      
-      setTmphwv(hwv)
+  
+        setTmphwv(hwv)
+        //hwv.markupManager.loadMarkupData(markupData);
+        //setInitialCam(hwv.view._initialCamera)
+
      // console.log(hwv && hwv.markupManager._noteTextManager._noteTextList[0]);
   }, function (errorReason) {
       var errorDialog = new window.Communicator.Ui.UiDialog("content");
@@ -144,10 +133,18 @@ const HoopsViewer = (props) => {
       errorDialog.setText(errorReason);
       errorDialog.show();
   });
-  },[])
+  }, [])
+    
+    useEffect(() => {
+        if (tmphwv)
+        {
+            tmphwv.markupManager.loadMarkupData(markupData);     
+        }   
+    },[newCam]);
+    
   useEffect(() => {
    if(props.clickedId !== null){
-       console.log(tmphwv);
+       
           var cameraLoactionNew = {
         "position": {
             "x": 49.85546164375514,
@@ -175,7 +172,13 @@ const HoopsViewer = (props) => {
        tmphwv.view.setCamera(newcamera, 1000);
       // tmphwv.view.pointToWindowPosition(newcamera);
        tmphwv.markupManager.loadMarkupData(markupData);
+
     // console.log(new window.Communicator.Markup._MarkupViewConstruction("test"));
+       
+    //const markupData = JSON.stringify(viewer.markupManager.exportMarkup());
+
+       
+      
       
     //  console.log(hwv && hwv.markupManager._noteTextManager._noteTextList);
     // window.Sample.createViewer().then(function (viewer) {
