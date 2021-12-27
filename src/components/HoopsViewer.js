@@ -172,7 +172,8 @@ const HoopsViewer = (props) => {
       }
        
        var   newcamera = window.Communicator.Camera.fromJson(cameraLoactionNew);
-       tmphwv.view.setCamera(newcamera);
+       tmphwv.view.setCamera(newcamera, 1000);
+      // tmphwv.view.pointToWindowPosition(newcamera);
        tmphwv.markupManager.loadMarkupData(markupData);
     // console.log(new window.Communicator.Markup._MarkupViewConstruction("test"));
       
