@@ -8,7 +8,7 @@ const markupData = {
     "notes": [{ "uniqueId": "c448d99e-1950-413a-bb79-74e4ff064d61", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { "x": 16.362143795455268, "y": 11.341463857846065, "z": -9.75108803089779 }, "selectionNormal": { "x": 0, "y": -0.8461166201787195, "z": 0.53299780961777 }, "text": "xcvxcv", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 },
         { "uniqueId": "b0b826e7-1f4a-4936-bdc7-b6a96d2837e5", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 53.09444439496133, y: 17.35680340879935, z: -8.714712965618673 }, "selectionNormal": { x: 0.39381808307983834, y: -0.4877177486906548, z: 0.7791268927789881 }, "text": "nmnmnmnnm", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 },
         { "uniqueId": "fccbbfb3-27ba-4c59-86e5-1af03bbc1232", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 32.6057585177432, y: 9.063699915930556, z: -15.342845537682479 }, "selectionNormal": { x: 0, y: -0.9777586050227087, z: 0.2097334267684736 }, "text": "yyyyyyyy", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 },
-        { "uniqueId": "2758607b-a1b2-41a3-b07b-2182ef2a9bfb", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 8.201865731694852, y: 24.70312729512807, z: -52.81000000124004 }, "selectionNormal": {x: 0, y: 0, z: 1}, "text": ["kkkkkkkkkkk",'nmnmnmnmnmnmnm','ghghghhggh'], "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 }],
+        { "uniqueId": "2758607b-a1b2-41a3-b07b-2182ef2a9bfb", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 8.201865731694852, y: 24.70312729512807, z: -52.81000000124004 }, "selectionNormal": {x: 0, y: 0, z: 1}, "text": "Test node pin", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 }],
     "measurement": [],
     "lines": []
 };
@@ -16,13 +16,15 @@ const markupData = {
 const HoopsViewer = (props) => {
    // console.log(window);
     const [tmphwv, setTmphwv] = useState(null);
-    const [newCam, setNewCam] = useState(null);
+    const [newCam,setNewCam ] = useState(null);
+
+    console.log('newcam is', newCam);
 
   let hwv = null;
   let ui = null;
     let md = new window.MobileDetect(window.navigator.userAgent);
     
-    var activeItem = { "_noteElementId": "5e43a28d-0b64-4d1c-ada0-4d60362d6332",
+    var activeItem = { "_noteElementIsetNewCamd": "5e43a28d-0b64-4d1c-ada0-4d60362d6332",
     "_partId": 71,
     "_position": {x: 35.77206802368164,
       y: 36.40321731567383,
@@ -93,27 +95,18 @@ const HoopsViewer = (props) => {
         ui = new window.Communicator.Ui.Desktop.DesktopUi(hwv, uiConfig);
 
         
-        // hwv.setCallbacks({
-        //     sceneReady: () => {
-        //         // hwv.view.setBackgroundColor(window.Communicator.Color.blue(), window.Communicator.Color.white());
-        //         // var currentcamera = hwv.view.getCamera();
-        //     //     var jsoncamera = cameraLoaction.toJson();
+        hwv.setCallbacks({
+            sceneReady: () => {
+                // hwv.view.setBackgroundColor(window.Communicator.Color.blue(), window.Communicator.Color.white());
+                // var currentcamera = hwv.view.getCamera();
+            //     var jsoncamera = cameraLoaction.toJson();
           
-        //      var   newcamera = window.Communicator.Camera.fromJson(cameraLoaction);
-        //      console.log("newcamera",cameraLoaction)
-        //     hwv.view.setCamera(newcamera);
-        //     // hwv.selectionManager.add(activeItem._noteElementId)
-        //     },
-        //     // modelStructureReady: () => {
-        //     //     document.getElementById('ModelStructureReady').innerHTML = 'Model Structure Ready';
-        //     // },
-        //     camera: () => {
-        //         var currentcamera = hwv.view.getCamera();
-        //         var jsoncamera = currentcamera.toJson();
-        //         console.log("jsoncamera",jsoncamera)
-        //     //   hwv.view.setCamera(newcamera);
-        //     },
-        // });
+             var   newcamera = window.Communicator.Camera.fromJson(cameraLoaction);
+                setNewCam(newcamera);
+            },
+        });
+        
+        
 
       hwv.start();
         console.log(hwv);
@@ -196,7 +189,7 @@ const HoopsViewer = (props) => {
     // });
     //console.log("clicked", activeNoteText);
    }
-}, [props.clickedId])
+}, [props])
 
     return (
       <div id="mainHoops">

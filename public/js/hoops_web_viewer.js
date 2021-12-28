@@ -26309,7 +26309,7 @@ d.Subscript3 = "\u00b3"
 				this._container = document.createElement("div");
 				this._container.className = "noteTextElement";
 				this._viewer = a;
-				var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwNjEyNDM4LCJpYXQiOjE2NDA1NzY0Mzh9.fYK--rxnrejA5jTg7AXIb0Vt3pN83SW-a15ucK8m_D8';
+				var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwNjk2MTAxLCJpYXQiOjE2NDA2NjAxMDF9.plQ96UcSmEqlTjcZHnwLSOOV1zWiIUzDRKtfct-qEWY';
 				// var comment_wrapper_container = document.createElement("div");
 		// comment_wrapper_container.className ="comment_wrapper_container"
 		// 	comments.forEach(function(c) {
@@ -26380,7 +26380,7 @@ if(a._activeNoteText !== null){
 					// alert("Button is clicked",a._activeNoteText);
 					
 					console.log(a._activeNoteText)
-					var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwNjEyNDM4LCJpYXQiOjE2NDA1NzY0Mzh9.fYK--rxnrejA5jTg7AXIb0Vt3pN83SW-a15ucK8m_D8';
+					var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwNjk2MTAxLCJpYXQiOjE2NDA2NjAxMDF9.plQ96UcSmEqlTjcZHnwLSOOV1zWiIUzDRKtfct-qEWY';
 					var body = {
 						anchorLocation: JSON.stringify(a._activeNoteText._selectionPosition),
 						anchorType: "CELL",
