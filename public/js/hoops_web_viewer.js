@@ -8265,7 +8265,7 @@ d.getStateFailure = function(d) {
 				throw new d.InternalLogicError();
 			};
 			b.prototype.logMessage = function(b) {
-				console.log(b)
+				console.log("nnnnn", b);
 			};
 			b.prototype.setTimeout = function(b, c) {
 				return setTimeout(b,
@@ -26329,6 +26329,7 @@ d.Subscript3 = "\u00b3"
 
 		// 		});
 		// 		this._container.appendChild(comment_wrapper_container);
+				
 if(a._activeNoteText !== null){
 	fetch(`http://apriordevapp-env.eba-ajmpa4mr.us-east-1.elasticbeanstalk.com/api/ws/comment-threads/prequote-rfqs/61c17bc2e13c01425d1c3a5f/comment-channels/ccbc224e-622b-11ec-b78e-e9b71b80d45f/anchor-location/${JSON.stringify(a?._activeNoteText?._selectionPosition)}/anchor-type/CELL`, {
 		method: 'GET',
@@ -26367,7 +26368,7 @@ if(a._activeNoteText !== null){
 				
 
 			
-
+console.log("active node text is", a._activeNoteText);
 				this._textArea = document.createElement("textarea");
 				this._textArea.oninput = function() {
 					null !== a._activeNoteText && a._activeNoteText.saveTextValue()
@@ -29556,7 +29557,8 @@ if(a._activeNoteText !== null){
 					return __generator(this, function(a) {
 						switch (a.label) {
 							case 0:
-								return this._noteTextManager.setActiveItemHandle(this._viewer.markupManager.registerMarkup(this)), this._noteTextManager.setActiveItem(this), this._show(b), this._updateColor(), [4, this.draw()];
+								return this._noteTextManager.setActiveItem(this), this._show(b), this._updateColor(), [4, this.draw()];
+								//return this._noteTextManager.setActiveItemHandle(this._viewer.markupManager.registerMarkup(this)), this._noteTextManager.setActiveItem(this), this._show(b), this._updateColor(), [4, this.draw()];
 							case 1:
 								return a.sent(), [2]
 						}
