@@ -13,9 +13,9 @@ export class CustomOperator {
                 Emitter.emit('MOUSE_DOWN_TRIGGER', selection);
                 this._viewer.model.setNodesOpacity([this._partId], 0.5);
                 console.log("_partId", this._partId )
-                console.log("selection", selection )
-                console.log(" this._viewer",  this._viewer)
-
+                console.log("selection", selection)
+                const div = this._viewer._noteTextManager._noteTextElement._container;
+                 div.style.display= "block";
             }
         });
     }
