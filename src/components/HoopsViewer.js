@@ -5,11 +5,20 @@ import Emitter from '../services/emitter';
 const markupData = {
     "views": [],
     "notes": [
-         { "uniqueId": "b0b826e7-1f4a-4936-bdc7-b6a96d2837e5", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 53.09444439496133, y: 17.35680340879935, z: -8.714712965618673 }, "selectionNormal": { x: 0.39381808307983834, y: -0.4877177486906548, z: 0.7791268927789881 }, "text": "nmnmnmnnm", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 },
+        
         { "uniqueId": "fccbbfb3-27ba-4c59-86e5-1af03bbc1232", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 32.6057585177432, y: 9.063699915930556, z: -15.342845537682479 }, "selectionNormal": { x: 0, y: -0.9777586050227087, z: 0.2097334267684736 }, "text": "yyyyyyyy", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 },
         { "uniqueId": "2758607b-a1b2-41a3-b07b-2182ef2a9bfb", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 8.201865731694852, y: 24.70312729512807, z: -52.81000000124004 }, "selectionNormal": { x: 0, y: 0, z: 1 }, "text": ["kkkkkkkkkkk", 'nmnmnmnmnmnmnm', 'ghghghhggh'], "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 },
         { "uniqueId": "335a4437-c240-438b-9358-f615d01bc55e", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 7.400000100953548, y: 32.034542234214314, z: -20.252847442099664 }, "selectionNormal": { x: -1, y: 0, z: 0 }, "text": "commnetttttt", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 },
         { "uniqueId": "c448d99e-1950-413a-bb79-74e4ff064d61", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { "x": 16.362143795455268, "y": 11.341463857846065, "z": -9.75108803089779 }, "selectionNormal": { "x": 0, "y": -0.8461166201787195, "z": 0.53299780961777 }, "text": "xcvxcv", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 }],
+    "measurement": [],
+    "lines": []
+};
+
+const markupData2 = {
+    "views": [],
+    "notes": [
+         { "uniqueId": "b0b826e7-1f4a-4936-bdc7-b6a96d2837e5", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 53.09444439496133, y: 17.35680340879935, z: -8.714712965618673 }, "selectionNormal": { x: 0.39381808307983834, y: -0.4877177486906548, z: 0.7791268927789881 }, "text": "nmnmnmnnm", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 },
+        ],
     "measurement": [],
     "lines": []
 };
@@ -188,8 +197,8 @@ const HoopsViewer = (props) => {
        
        var   newcamera = window.Communicator.Camera.fromJson(cameraLoactionNew);
        tmphwv.view.setCamera(newcamera, 1000);
-      tmphwv.view.pointToWindowPosition(newcamera);
-       //tmphwv.markupManager.loadMarkupData(markupData);
+       tmphwv.view.pointToWindowPosition(newcamera);
+       tmphwv.markupManager.loadMarkupData(markupData2);
 
     // console.log(new window.Communicator.Markup._MarkupViewConstruction("test"));
        
@@ -214,8 +223,6 @@ const HoopsViewer = (props) => {
     //     errorDialog.show();
     // });
     //console.log("clicked", activeNoteText);
-    console.log("selected markup is",tmphwv.markupManager.getSelectedMarkup()); 
-    console.log("active view is", tmphwv.markupManager.getMarkupView("c448d99e-1950-413a-bb79-74e4ff064d61"));
    }
 }, [props])
 
