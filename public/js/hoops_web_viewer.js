@@ -5366,11 +5366,16 @@ var h = function() {
 			})
 		})
 	};
-	f.prototype._loadMarkupData = async function (a, initial) {
+	f.prototype._loadMarkupData = async function (a,initial) {
 		if (initial == 'initial')
 		{
 			const div = this._noteTextManager.getNoteTextElement()._container;
 			div.style.display= "none";
+		}
+		else
+		{
+			const div = this._noteTextManager.getNoteTextElement()._container;
+			div.style.display= "block";
 		}
 		return __awaiter(this, void 0, void 0, function() {
 			var e, c
