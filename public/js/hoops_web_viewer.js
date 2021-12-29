@@ -5369,9 +5369,8 @@ var h = function() {
 	f.prototype._loadMarkupData = async function (a, initial) {
 		if (initial == 'initial')
 		{
-			// const div = this._noteTextManager.getNoteTextElement()._container;
-			// div.style.display= "none";
-			// console.log("div is", div);
+			const div = this._noteTextManager.getNoteTextElement()._container;
+			div.style.display= "none";
 		}
 		return __awaiter(this, void 0, void 0, function() {
 			var e, c
