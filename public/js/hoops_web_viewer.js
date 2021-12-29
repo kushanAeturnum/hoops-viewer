@@ -5110,6 +5110,7 @@ var h = function() {
 }();
 d.MarkupTypeManager = h
 })(Communicator || (Communicator = {}));
+
 (function(d) {
 var h = function(f) {
 	function a(a, c) {
@@ -5273,7 +5274,7 @@ var h = function() {
 		};
 		return c
 	};
-	f.prototype.registerMarkupTypeManager = function(a, d) {
+	f.prototype.registerMarkupTypeManager = function (a, d) {
 		this._markupTypeMap.set(a, d)
 	};
 	f.prototype.createMarkupView = function(a, d, c, b, g) {
@@ -5299,7 +5300,7 @@ var h = function() {
 			})
 		})
 	};
-	f.prototype.activateMarkupView = function(a, e) {
+	f.prototype.activateMarkupView = function (a, e) {
 		void 0 === e && (e = d.DefaultTransitionDuration);
 		return this._viewManager.deprecatedActivateView(a, e)
 	};
@@ -5318,7 +5319,7 @@ var h = function() {
 		this._itemManager.unregisterMarkupItem(a);
 		this.updateLater()
 	};
-	f.prototype.addMarkupElement = function(a) {
+	f.prototype.addMarkupElement = function (a) {
 		var e = d.GUID.create();
 		a.id = e;
 		this._domElements.getRedlineElement().appendChild(a);
@@ -5348,7 +5349,7 @@ var h = function() {
 	f.prototype.selectMarkup = function(a) {
 		this._itemManager.select(a)
 	};
-	f.prototype.getSelectedMarkup = function() {
+	f.prototype.getSelectedMarkup = function () {
 		return this._itemManager.getSelected()
 	};
 	f.prototype.exportMarkup = function() {
@@ -5363,17 +5364,23 @@ var h = function() {
 		});
 		return a
 	};
-	f.prototype.loadMarkupData = function(a) {
+	f.prototype.loadMarkupData = function(a,initial) {
 		return __awaiter(this, void 0, void 0, function() {
 			return __generator(this, function(d) {
 				"string" === typeof a && (a = JSON.parse(a));
-				return [2, this._loadMarkupData(a)]
+				return [2, this._loadMarkupData(a,initial)]
 			})
 		})
 	};
-	f.prototype._loadMarkupData = function(a) {
+	f.prototype._loadMarkupData = async function (a, initial) {
+		if (initial == 'initial')
+		{
+			// const div = this._noteTextManager.getNoteTextElement()._container;
+			// div.style.display= "none";
+			// console.log("div is", div);
+		}
 		return __awaiter(this, void 0, void 0, function() {
-			var e, c;
+			var e, c
 			return __generator(this, function(b) {
 				e = [];
 				a.hasOwnProperty("views") && (c = this._viewManager.loadData(a.views).then(d.Internal.all), e.push(c));
@@ -5414,6 +5421,7 @@ var h = function() {
 d.MarkupManager =
 	h
 })(Communicator || (Communicator = {}));
+
 (function(d) {
 var h = function(f) {
 	function a(a, c) {
@@ -5483,7 +5491,7 @@ var h = function(f) {
 	a.prototype._handleLoadMeasurement = function(a) {
 		return a instanceof d.Markup.Measure.MeasureMarkup ? (this.addMeasurement(a), this._callbackManager.trigger("measurementLoaded", a), !0) : !1
 	};
-	a.prototype.loadData = function(a) {
+	a.prototype.loadData = function (a) {
 		for (var c = this, b = [], g = 0; g < a.length; g++) {
 			var k = a[g];
 			if (k.hasOwnProperty("className")) {
@@ -26442,7 +26450,9 @@ console.log("active node text is", a._activeNoteText);
 					//_container.className = "noteButton color " 
 					//a.body
 					//console.log('cnaclelable container',a);
+					
 					var div = _container.path[1];
+					console.log(div);
 					await div.remove();
 					//await console.log('cnaclelable container',_container.path[1]);
 					// console.log('cancel clikced');
@@ -27631,7 +27641,8 @@ console.log("active node text is", a._activeNoteText);
 			});
 			return a
 		};
-		e.prototype.loadData = function(a) {
+		e.prototype.loadData = function (a) {
+			//console.log('aaaaaaaaaaaaaaaaaaa', a);
 			return __awaiter(this, void 0, void 0, function() {
 				var b, c, e, f, n, m = this;
 				return __generator(this, function(g) {
@@ -27722,7 +27733,7 @@ console.log("active node text is", a._activeNoteText);
 				})
 			})
 		};
-		e.prototype.deprecatedActivateView = function(a, b) {
+		e.prototype.deprecatedActivateView = function (a, b) {
 			void 0 === b && (b = d.DefaultTransitionDuration);
 			return this._activateView(a, b).unsafeValue
 		};
@@ -29083,7 +29094,8 @@ console.log("active node text is", a._activeNoteText);
 	})(h.Measure || (h.Measure = {}))
 })(d.Markup || (d.Markup = {}))
 })(Communicator ||
-(Communicator = {}));
+	(Communicator = {}));
+
 (function(d) {
 (function(h) {
 	(function(f) {
@@ -29481,17 +29493,21 @@ console.log("active node text is", a._activeNoteText);
 	}
 })(d.Util || (d.Util = {}))
 })(Communicator || (Communicator = {}));
-(function(d) {
-(function(h) {
-	(function(f) {
-		var a;
+
+(function(d,xxx) {
+	(function (h) {
+		(function (f) {
+			var a;
 		(function(a) {
 			a[a.Created = 0] = "Created";
 			a[a.Hidden = 1] = "Hidden";
 			a[a.Shown = 2] = "Shown"
-		})(a = f._NoteTextEvent || (f._NoteTextEvent = {}));
-		var e = function(c) {
-			function b(b, a, e, f, h) {
+			})(a = f._NoteTextEvent || (f._NoteTextEvent = {}));
+			
+			var e = function (c) {
+			
+				function b(b, a, e, f, h) {
+					var zz = []
 				var g = c.call(this) || this;
 				g._uniqueId = d.GUID.create();
 				g._noteElementId = null;
@@ -29509,19 +29525,19 @@ console.log("active node text is", a._activeNoteText);
 				g._partId =
 					h;
 				g._noteTextManager.addNote(g);
-				g._init();
+			    g._init();
 				return g
 			}
-			__extends(b, c);
+				__extends(b, c);		
 			b.prototype._init = function() {
 				return __awaiter(this, void 0, void 0, function() {
-					var b, c, d, e, f, h = this;
+					var b, c, d, e, f, h = this				
 					return __generator(this, function(g) {
 						switch (g.label) {
 							case 0:
 								return b = this._createPinTransformationMatrix(this._selectionPosition, this._selectionNormal), [4, Promise.all([this._createPinStemInstance(b), this._createPinSphereInstance(b)])];
 							case 1:
-								return c = g.sent(), d = c[0], e = c[1], this._stemInstanceId = d, this._sphereInstanceId = e, [4, this._restore(!1)];
+								return c = g.sent(), d = c[0], e = c[1], this._stemInstanceId = d, this._sphereInstanceId = e, [4, this._restore(!1,'llllll')];
 							case 2:
 								return g.sent(), this._callbacks = {
 									visibilityChanged: function() {
@@ -29558,13 +29574,12 @@ console.log("active node text is", a._activeNoteText);
 					})
 				})
 			};
-			b.prototype._restore = function(b) {
+				b.prototype._restore = function (b) {
 				return __awaiter(this, void 0, void 0, function() {
-					return __generator(this, function(a) {
+					return __generator(this, function (a) {
 						switch (a.label) {
 							case 0:
-								return this._noteTextManager.setActiveItem(this), this._show(b), this._updateColor(), [4, this.draw()];
-								//return this._noteTextManager.setActiveItemHandle(this._viewer.markupManager.registerMarkup(this)), this._noteTextManager.setActiveItem(this), this._show(b), this._updateColor(), [4, this.draw()];
+								return this._noteTextManager.setActiveItemHandle(this._viewer.markupManager.registerMarkup(this)), this._noteTextManager.setActiveItem(this), this._show(b), this._updateColor(), [4, this.draw()];								
 							case 1:
 								return a.sent(), [2]
 						}
@@ -29776,10 +29791,13 @@ console.log("active node text is", a._activeNoteText);
 	})(h.Note || (h.Note = {}))
 })(d.Markup || (d.Markup = {}))
 })(Communicator || (Communicator = {}));
+
 (function(d) {
-(function(h) {
-	var f = function(a) {
+	(function (h) {
+		
+	var f = function (a) {
 		function e(c) {
+			console.log("ddddddd", d);
 			var b = a.call(this) || this;
 			b._pinSphereMeshId = null;
 			b._pinStemMeshId = null;
@@ -30011,13 +30029,16 @@ console.log("active node text is", a._activeNoteText);
 				if (a === c[b].getUniqueId()) return !0;
 			return !1
 		};
-		e.prototype.loadData = function(a) {
+		e.prototype.loadData = function (a) {
+			console.log('aaaaaaaaaaaaaaaaaaa', a);
 			for (var b = [], c = 0; c < a.length; c++) {
 				var e = d.Markup.Note.NoteText.fromJson(a[c], this._viewer, this).then(function(b) {
 					return null !== b
 				});
 				b.push(e)
+				
 			}
+			console.log("bbbbbbb is", b);
 			return Promise.all(b)
 		};
 		e.prototype.exportMarkup = function() {
