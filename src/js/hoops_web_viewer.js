@@ -1,3 +1,6 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-expressions */
 var comments =[
     {
         "createdBy": "619467caeedda06e76d40d51",

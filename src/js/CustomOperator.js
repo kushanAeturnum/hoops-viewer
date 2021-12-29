@@ -1,3 +1,5 @@
+import Emitter from "../services/emitter";
+
 export class CustomOperator {
     constructor(viewer) {
         this._viewer = viewer;
@@ -8,9 +10,12 @@ export class CustomOperator {
         this._viewer.view.pickFromPoint(event.getPosition(), pickConfig).then((selection) => {
             if (selection.getSelectionType() !== window.Communicator.SelectionType.None) {
                 this._partId = selection.getNodeId();
+                Emitter.emit('MOUSE_DOWN_TRIGGER', selection);
                 this._viewer.model.setNodesOpacity([this._partId], 0.5);
                 console.log("_partId", this._partId )
                 console.log("selection", selection )
+                console.log(" this._viewer",  this._viewer)
+
             }
         });
     }

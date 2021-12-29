@@ -1,7 +1,6 @@
 import React ,{useEffect, useState} from 'react';
-import activeNoteText from '../data/activeNoteText'
 import { CustomOperator } from '../js/CustomOperator';
-
+import Emitter from '../services/emitter';
 
 const markupData = {
     
@@ -16,11 +15,13 @@ const markupData = {
 const HoopsViewer = (props) => {
    // console.log(window);
     const [tmphwv, setTmphwv] = useState(null);
-    const [newCam,setNewCam ] = useState(null);
-
+    const [newCam,setNewCam ] = useState(null); 
+    //  let [hwv, setHwv] = useState();
+     let [isEventTriggered, setIsEventTriggered] = useState();
+     let hwv = null
     console.log('newcam is', newCam);
 
-  let hwv = null;
+ 
   let ui = null;
     let md = new window.MobileDetect(window.navigator.userAgent);
     
@@ -69,10 +70,11 @@ const HoopsViewer = (props) => {
       "className": "Communicator.Camera"
     }
 
+ 
 
   useEffect(() => {
     window.Sample.createViewer().then(function (viewer) {
-      hwv = viewer;
+        hwv = viewer;
 
       window.onresize = function (event) {
           // jQuery resizable triggers onresize, check that the call is not coming from a DOM element object
@@ -104,18 +106,24 @@ const HoopsViewer = (props) => {
              var   newcamera = window.Communicator.Camera.fromJson(cameraLoaction);
                 setNewCam(newcamera);
             },
+            // selectionArray: mySelectionFunc,
+            
         });
-        
-        
-
+      
+       
       hwv.start();
-        console.log(hwv);
+        console.log("dedddd",hwv);
+       
         const myOperator = new CustomOperator(hwv);
       var myOperatorHandle = hwv.operatorManager.registerCustomOperator(myOperator);
       hwv.operatorManager.push(myOperatorHandle);
       var part = CustomOperator._partId
-  
+   console.log("part", part)
+
         setTmphwv(hwv)
+      Emitter.on('MOUSE_DOWN_TRIGGER', (newValue) =>   setIsEventTriggered(newValue));
+        // console.log("hwv", hwv)
+        // hwv.markupManager._noteTextManager._noteTextElement._container.innerHTML = '<p>testttt</p>';
         //hwv.markupManager.loadMarkupData(markupData);
         //setInitialCam(hwv.view._initialCamera)
 
@@ -127,13 +135,27 @@ const HoopsViewer = (props) => {
       errorDialog.show();
   });
   }, [])
-    
+
+//   function mySelectionFunc() {
+//   console.log("hwv",hwv)
+  
+ 
+// }
     useEffect(() => {
         if (tmphwv)
         {
-            tmphwv.markupManager.loadMarkupData(markupData);     
+            tmphwv.markupManager.loadMarkupData(markupData);                
         }   
     },[newCam]);
+    useEffect(() => {
+        console.log("hwv==============",tmphwv) 
+        if (tmphwv)
+        {
+            tmphwv.markupManager._noteTextManager._noteTextElement._container.innerHTML = '<textarea></textarea><button class="commentBtn">Comment</button><button class="cancelBtn">Cancel</button>';
+            console.log("testttt==",tmphwv.markupManager._noteTextManager._noteTextElement._container)
+        }
+      
+    },[isEventTriggered]);
     
   useEffect(() => {
    if(props.clickedId !== null){
