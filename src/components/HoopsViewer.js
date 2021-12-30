@@ -1,6 +1,7 @@
 import React ,{useEffect, useState} from 'react';
 import { CustomOperator } from '../js/CustomOperator';
 import Emitter from '../services/emitter';
+import '../css/style.css';
 
 const markupData = {
     "views": [],
@@ -13,6 +14,117 @@ const markupData = {
     "measurement": [],
     "lines": []
 };
+
+const comments =[
+    {
+        "createdBy": "619467caeedda06e76d40d51",
+        "createdTime": "2021-12-27T12:43:57.811Z",
+        "updatedBy": "619467caeedda06e76d40d51",
+        "updatedTime": "2021-12-27T12:43:57.811Z",
+        "id": "c770b46f-b301-4cf1-99ca-c68da70b2bd4",
+        "senderId": {
+            "createdBy": "ADMIN",
+            "createdTime": "2021-11-17T02:24:10.905Z",
+            "updatedBy": null,
+            "updatedTime": "2021-11-17T02:24:10.905Z",
+            "id": "619467caeedda06e76d40d51",
+            "userName": "woodwardbsmuser1",
+            "name": "Woodward BSM User 1",
+            "emailAddress": "woodwardbsmuser@gmail.com",
+            "userImage": "https://apriori-images.s3.amazonaws.com/user2.jpg",
+            "status": "ACTIVE",
+            "tenantId": null,
+            "active": true
+        },
+        "tagUsersList": [],
+        "messageBody": "Hi",
+        "status": "DRAFT",
+        "tenantId": "",
+        "sendNotificationStatus": true,
+        "notify": false
+    },
+    {
+        "createdBy": "619467caeedda06e76d40d51",
+        "createdTime": "2021-12-28T14:10:44.448Z",
+        "updatedBy": "619467caeedda06e76d40d51",
+        "updatedTime": "2021-12-28T14:10:44.448Z",
+        "id": "aea5d323-e944-4db4-a2bb-a2efff9d4afc",
+        "senderId": {
+            "createdBy": "ADMIN",
+            "createdTime": "2021-11-17T02:24:10.905Z",
+            "updatedBy": null,
+            "updatedTime": "2021-11-17T02:24:10.905Z",
+            "id": "619467caeedda06e76d40d51",
+            "userName": "woodwardbsmuser1",
+            "name": "Woodward BSM User 1",
+            "emailAddress": "woodwardbsmuser@gmail.com",
+            "userImage": "https://apriori-images.s3.amazonaws.com/user2.jpg",
+            "status": "ACTIVE",
+            "tenantId": null,
+            "active": true
+        },
+        "tagUsersList": [],
+        "messageBody": "Test node pin",
+        "status": "DRAFT",
+        "tenantId": "",
+        "sendNotificationStatus": true,
+        "notify": false
+    },
+    {
+        "createdBy": "619467caeedda06e76d40d51",
+        "createdTime": "2021-12-29T12:35:19.890Z",
+        "updatedBy": "619467caeedda06e76d40d51",
+        "updatedTime": "2021-12-29T12:35:19.890Z",
+        "id": "b2c98525-b041-4086-a215-89109bd926bd",
+        "senderId": {
+            "createdBy": "ADMIN",
+            "createdTime": "2021-11-17T02:24:10.905Z",
+            "updatedBy": null,
+            "updatedTime": "2021-11-17T02:24:10.905Z",
+            "id": "619467caeedda06e76d40d51",
+            "userName": "woodwardbsmuser1",
+            "name": "Woodward BSM User 1",
+            "emailAddress": "woodwardbsmuser@gmail.com",
+            "userImage": "https://apriori-images.s3.amazonaws.com/user2.jpg",
+            "status": "ACTIVE",
+            "tenantId": null,
+            "active": true
+        },
+        "tagUsersList": [],
+        "messageBody": "test0002",
+        "status": "DRAFT",
+        "tenantId": "",
+        "sendNotificationStatus": true,
+        "notify": false
+    },
+    {
+        "createdBy": "619467caeedda06e76d40d51",
+        "createdTime": "2021-12-29T13:44:03.719Z",
+        "updatedBy": "619467caeedda06e76d40d51",
+        "updatedTime": "2021-12-29T13:44:03.719Z",
+        "id": "495c8af5-8d1d-4ec5-b5f0-67f104b0e6c0",
+        "senderId": {
+            "createdBy": "ADMIN",
+            "createdTime": "2021-11-17T02:24:10.905Z",
+            "updatedBy": null,
+            "updatedTime": "2021-11-17T02:24:10.905Z",
+            "id": "619467caeedda06e76d40d51",
+            "userName": "woodwardbsmuser1",
+            "name": "Woodward BSM User 1",
+            "emailAddress": "woodwardbsmuser@gmail.com",
+            "userImage": "https://apriori-images.s3.amazonaws.com/user2.jpg",
+            "status": "ACTIVE",
+            "tenantId": null,
+            "active": true
+        },
+        "tagUsersList": [],
+        "messageBody": "is changed?",
+        "status": "DRAFT",
+        "tenantId": "",
+        "sendNotificationStatus": true,
+        "notify": false
+    }
+]
 
 const markupData2 = {
     "views": [],
@@ -29,7 +141,10 @@ const HoopsViewer = (props) => {
     const [newCam,setNewCam ] = useState(null); 
     //  let [hwv, setHwv] = useState();
      let [isEventTriggered, setIsEventTriggered] = useState();
-     let hwv = null
+     let hwv = null;
+     var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwODczMjU3LCJpYXQiOjE2NDA4MzcyNTd9.a4FAnLPKQm3o0-QJufSa_jPFem1zN-lxRcqM3P7Yg-s';
+var prequote_rfq_id = "61c19377e13c01425d1c3a62";
+var comment_channel_id = "ef8fa86a-6239-11ec-b78e-e9b71b80d45f";
     console.log('newcam is', newCam);
 
  
@@ -160,15 +275,87 @@ const HoopsViewer = (props) => {
         }   
     },[newCam]);
     useEffect(() => {
-        console.log("hwv==============",tmphwv) 
+       
         if (tmphwv)
         {
-            tmphwv.markupManager._noteTextManager._noteTextElement._container.innerHTML = '<textarea></textarea><button class="commentBtn">Comment</button><button class="cancelBtn">Cancel</button>';
-            console.log("testttt==",tmphwv.markupManager._noteTextManager._noteTextElement._container)
+            console.log("hwv==============",JSON.stringify(tmphwv._noteTextManager._activeItem._selectionPosition)) 
+            let str = ''
+          comments.forEach(comment => {
+            str += `<div style="border-bottom: 1px solid #000; padding-bottom : 5px"><div class="d-flex">
+            <div>
+            <img
+              roundedCircle
+              src=${comment?.senderId?.userImage}
+              className="rounded comments-profile-pic"
+              style="width: 50px;
+              height: 50px;
+              margin: 5px;"
+              alt="Profile"
+            />
+          </div>
+          <div>
+            <div style="font-weight: bold">
+             ${comment.senderId.name}
+          </div>
+          <div style="
+          font-size: 14px;">${comment.createdTime}</div>
+       
+          </div>
+         </div>
+         <div style="width: 300px;
+         padding: 10px;
+        
+         margin: 0;">${comment.messageBody}</div></div>`
+        
+            })
+            console.log("str", str)
+            
+
+//             const comments = getCommentsByThread(JSON.stringify(tmphwv._noteTextManager._activeItem._selectionPosition))
+// console.log("commentsssss", comments)
+            tmphwv.markupManager._noteTextManager._noteTextElement._container.innerHTML = `<div style="height: 200px;overflow-y: auto;"
+             class="comment_wrapper">${str}</div>	<textarea></textarea>
+             <button id="create_comment"  onclick="${createComment()}" class="commentBtn">Comment</button>
+             <button class="cancelBtn">Cancel</button>`;
+            //  document.getElementById('create_comment').onclick = createComment(tmphwv._noteTextManager._activeItem)
+           
         }
       
     },[isEventTriggered]);
-    
+
+ function createComment()
+{
+    let activeNoteData = tmphwv._noteTextManager._activeItem
+    var body = {
+        anchorLocation: JSON.stringify(activeNoteData._selectionPosition),
+        anchorType: "CELL",
+        businessKey: "6aef8223-98e4-4cae-93ea-5b15d357ffd8",
+        messageBody: activeNoteData._text,
+        messageTittle:`Material Cost part- ${activeNoteData._partId}`,
+        rfqPreQuoteId: "61c96c51e13c01425d1c3a73",
+        senarioDataItemId: "619bd5476651e3ca4caab9c3",
+        sendNotificationStatus: true,
+        supplierCommentChannelId: "4dba5c05-66e7-11ec-bb56-777a0c3ed608",
+        tagUserIdList: [],
+
+    }
+    fetch('http://apriordevapp-env.eba-ajmpa4mr.us-east-1.elasticbeanstalk.com/api/ws/comment-threads', {
+            method: 'POST',
+            body: JSON.stringify(body), // string or object
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+          
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
   useEffect(() => {
    if(props.clickedId !== null){
        
@@ -226,6 +413,25 @@ const HoopsViewer = (props) => {
    }
 }, [props])
 
+
+
+const getCommentsByThread = (selectionPosition) =>
+{
+    fetch(`http://apriordevapp-env.eba-ajmpa4mr.us-east-1.elasticbeanstalk.com/api/ws/comment-threads/prequote-rfqs/${prequote_rfq_id}/comment-channels/${comment_channel_id}/anchor-location/${selectionPosition}/anchor-type/CELL`, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`
+		}
+	}).then(response => response.json())
+	.then(data => {
+		console.log('Success:', data);
+		return data.data.comments;	
+	})
+	.catch((error) => {
+		console.error('Error:', error);
+	});
+}
     return (
       <div id="mainHoops">
         <div id="content">

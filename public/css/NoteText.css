@@ -1,6 +1,6 @@
 ﻿.noteTextElement {
     position: absolute;
-    width: 250px;
+    width: 300px;
     /* height: 160px; */
     height: auto;
     z-index: 2;
@@ -35,7 +35,7 @@
 
     .noteTextElement textArea {
         margin: 5px;
-        width: 200px;
+        width: 287px;
         height: 100px;
         z-index: 2;
         resize: none;
@@ -77,12 +77,12 @@
 
         /* @Gowthamy chnages */
         button.commentBtn {
-            padding: 9px 23px;
+            padding: 9px 34px;
             margin-left: 6px;
             margin-right: 6px;
         }
         button.cancelBtn {
-            padding: 9px 23px;
+            padding: 9px 43px;
         }
         img.profile_image_wrapper {
             width: 50px;
