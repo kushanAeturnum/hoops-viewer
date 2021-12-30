@@ -26329,7 +26329,9 @@ d.Subscript3 = "\u00b3"
 
 		// 		});
 		// 		this._container.appendChild(comment_wrapper_container);
+
 if(a._activeNoteText !== null){
+	
 	fetch(`http://apriordevapp-env.eba-ajmpa4mr.us-east-1.elasticbeanstalk.com/api/ws/comment-threads/prequote-rfqs/61c17bc2e13c01425d1c3a5f/comment-channels/ccbc224e-622b-11ec-b78e-e9b71b80d45f/anchor-location/${JSON.stringify(a?._activeNoteText?._selectionPosition)}/anchor-type/CELL`, {
 		method: 'GET',
 		headers: {
@@ -26343,7 +26345,7 @@ if(a._activeNoteText !== null){
 		var comment_wrapper_container = document.createElement("div");
 		comment_wrapper_container.className ="comment_wrapper_container"
 			comments.forEach(function(c) {
-				
+
 					var comment_wrapper = document.createElement("div");
 					comment_wrapper.className ="comment_wrapper row"
 					var profile_wrapper = document.createElement("div");
@@ -26364,6 +26366,37 @@ if(a._activeNoteText !== null){
 		console.error('Error:', error);
 	});
 }
+
+// if(localStorage.getItem('clikedData')){
+//    var clickedData = JSON.parse(localStorage.getItem('clikedData'));
+//    var commt = clickedData.comments;
+
+//    var comment_wrapper_container = document.createElement("div");
+// 		comment_wrapper_container.className ="comment_wrapper_container"
+// 		commt.forEach(function(c) {
+
+// 					var comment_wrapper = document.createElement("div");
+// 					comment_wrapper.className ="comment_wrapper row"
+// 					var profile_wrapper = document.createElement("div");
+// 					profile_wrapper.className ="col-sm-3"
+					
+// 					comment_wrapper.appendChild(profile_wrapper);
+// 					var profile_image_wrapper = document.createElement("img");
+// 					profile_image_wrapper.className ="profile_image_wrapper";
+// 					profile_image_wrapper.src= c.senderId.userImage;
+// 					profile_image_wrapper.alt = "Profile";
+
+// 					var comment_section = document.createElement("p");
+// 					comment_section.innerHTML +=  c.messageBody;
+// 					comment_wrapper.appendChild(comment_section);
+
+// 					profile_wrapper.appendChild(profile_image_wrapper);
+// 					comment_wrapper.appendChild(profile_wrapper);
+// 					comment_wrapper_container.appendChild(comment_wrapper);
+
+// 				});
+// 	this._container.appendChild(comment_wrapper_container);
+// }
 				
 
 			
@@ -26380,7 +26413,7 @@ if(a._activeNoteText !== null){
 					// alert("Button is clicked",a._activeNoteText);
 					
 					console.log(a._activeNoteText)
-					var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwNjEyNDM4LCJpYXQiOjE2NDA1NzY0Mzh9.fYK--rxnrejA5jTg7AXIb0Vt3pN83SW-a15ucK8m_D8';
+					var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwNzg3NTg3LCJpYXQiOjE2NDA3NTE1ODd9.eZP_8Gbdvk9MVhqltmKEOPeGikdsUlsRb5W4-K7_ZAg';
 					var body = {
 						anchorLocation: JSON.stringify(a._activeNoteText._selectionPosition),
 						anchorType: "CELL",
@@ -26418,6 +26451,7 @@ if(a._activeNoteText !== null){
 							comments = data.data.comments;
 							console.log('textarea is',_textArea)
 							_textArea.input = null;
+
 						})
 						.catch((error) => {
 							console.error('Error:', error);

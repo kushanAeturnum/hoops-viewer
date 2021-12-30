@@ -4,14 +4,16 @@ import { CustomOperator } from '../js/CustomOperator';
 
 
 const markupData = {
-    
-    "notes": [{ "uniqueId": "c448d99e-1950-413a-bb79-74e4ff064d61", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { "x": 16.362143795455268, "y": 11.341463857846065, "z": -9.75108803089779 }, "selectionNormal": { "x": 0, "y": -0.8461166201787195, "z": 0.53299780961777 }, "text": "xcvxcv", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 },
+    "notes": [
+        { "uniqueId": "c448d99e-1950-413a-bb79-74e4ff064d61", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 16.362143795455268, y: 11.341463857846065, z: -9.75108803089779 }, "selectionNormal": { "x": 0, "y": -0.8461166201787195, "z": 0.53299780961777 }, "text": "xcvxcv", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 },
+        { "uniqueId": "2758607b-a1b2-41a3-b07b-2182ef2a9bfb", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 8.201865731694852, y: 24.70312729512807, z: -52.81000000124004 }, "selectionNormal": {x: 0, y: 0, z: 1}, "text": ["kkkkkkkkkkk",'nmnmnmnmnmnmnm','ghghghhggh'], "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 },
         { "uniqueId": "b0b826e7-1f4a-4936-bdc7-b6a96d2837e5", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 53.09444439496133, y: 17.35680340879935, z: -8.714712965618673 }, "selectionNormal": { x: 0.39381808307983834, y: -0.4877177486906548, z: 0.7791268927789881 }, "text": "nmnmnmnnm", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 },
-        { "uniqueId": "fccbbfb3-27ba-4c59-86e5-1af03bbc1232", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 32.6057585177432, y: 9.063699915930556, z: -15.342845537682479 }, "selectionNormal": { x: 0, y: -0.9777586050227087, z: 0.2097334267684736 }, "text": "yyyyyyyy", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 },
-        { "uniqueId": "2758607b-a1b2-41a3-b07b-2182ef2a9bfb", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 8.201865731694852, y: 24.70312729512807, z: -52.81000000124004 }, "selectionNormal": {x: 0, y: 0, z: 1}, "text": ["kkkkkkkkkkk",'nmnmnmnmnmnmnm','ghghghhggh'], "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 }],
-    "measurement": [],
-    "lines": []
+        { "uniqueId": "fccbbfb3-27ba-4c59-86e5-1af03bbc1232", "className": "Communicator.Markup.Note.NoteText", "selectionPosition": { x: 21.64840701029425, y: 12.547429047525839, z: -7.968706215170187 }, "selectionNormal": { x: 0, y: -0.9777586050227087, z: 0.2097334267684736 }, "text": "yyyyyyyy", "color": { "r": 255, "g": 255, "b": 255 }, "partId": 20 } 
+    ],
+     "measurement": [],
+     "lines": []
 };
+
 
 const HoopsViewer = (props) => {
    // console.log(window);
@@ -93,30 +95,31 @@ const HoopsViewer = (props) => {
         ui = new window.Communicator.Ui.Desktop.DesktopUi(hwv, uiConfig);
 
         
-        // hwv.setCallbacks({
-        //     sceneReady: () => {
-        //         // hwv.view.setBackgroundColor(window.Communicator.Color.blue(), window.Communicator.Color.white());
-        //         // var currentcamera = hwv.view.getCamera();
-        //     //     var jsoncamera = cameraLoaction.toJson();
+        hwv.setCallbacks({
+            // sceneReady: () => {
+            //     // hwv.view.setBackgroundColor(window.Communicator.Color.blue(), window.Communicator.Color.white());
+            //     // var currentcamera = hwv.view.getCamera();
+            // //     var jsoncamera = cameraLoaction.toJson();
           
-        //      var   newcamera = window.Communicator.Camera.fromJson(cameraLoaction);
-        //      console.log("newcamera",cameraLoaction)
-        //     hwv.view.setCamera(newcamera);
-        //     // hwv.selectionManager.add(activeItem._noteElementId)
-        //     },
-        //     // modelStructureReady: () => {
-        //     //     document.getElementById('ModelStructureReady').innerHTML = 'Model Structure Ready';
-        //     // },
-        //     camera: () => {
-        //         var currentcamera = hwv.view.getCamera();
-        //         var jsoncamera = currentcamera.toJson();
-        //         console.log("jsoncamera",jsoncamera)
-        //     //   hwv.view.setCamera(newcamera);
-        //     },
-        // });
+            //  var   newcamera = window.Communicator.Camera.fromJson(cameraLoaction);
+            //  console.log("newcamera",cameraLoaction)
+            // hwv.view.setCamera(newcamera);
+            // // hwv.selectionManager.add(activeItem._noteElementId)
+            // },
+            // modelStructureReady: () => {
+            //     document.getElementById('ModelStructureReady').innerHTML = 'Model Structure Ready';
+            // },
+            // camera: () => {
+            //     var currentcamera = hwv.view.getCamera();
+            //     var jsoncamera = currentcamera.toJson();
+            //     console.log("jsoncamera",jsoncamera)
+            // //   hwv.view.setCamera(newcamera);
+            // },
+        });
 
       hwv.start();
         console.log(hwv);
+
         const myOperator = new CustomOperator(hwv);
       var myOperatorHandle = hwv.operatorManager.registerCustomOperator(myOperator);
       hwv.operatorManager.push(myOperatorHandle);
@@ -168,33 +171,62 @@ const HoopsViewer = (props) => {
         "className": "Communicator.Camera"
       }
        
-       var   newcamera = window.Communicator.Camera.fromJson(cameraLoactionNew);
+       var newcamera = window.Communicator.Camera.fromJson(cameraLoactionNew);
        tmphwv.view.setCamera(newcamera, 1000);
       // tmphwv.view.pointToWindowPosition(newcamera);
-       tmphwv.markupManager.loadMarkupData(markupData);
+       //tmphwv.markupManager.loadMarkupData(markupData);
+       //console.log(props.clickedId.anchorLocation);
+       //localStorage.setItem('clikedData', JSON.stringify(props.clickedId));
+  
+       console.log(props.clickedId);
+       let checkStatus = markupData.notes.filter( data => {
+        if( JSON.stringify(data.selectionPosition) === props.clickedId.anchorLocation){
+            return true
+        }
+       })
 
+       if(checkStatus.length > 0 ){
+        let indexOfNote = markupData.notes.findIndex(elem =>
+            JSON.stringify(elem.selectionPosition) === props.clickedId.anchorLocation 
+        );
+          
+        let lastIndex = markupData.notes.length - 1;
+   
+        function moveArrayItemToNewIndex(arr, old_index, new_index) {
+            if (new_index >= arr.length) {
+                var k = new_index - arr.length + 1;
+                while (k--) {
+                    arr.push(undefined);
+                }
+            }
+            arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+            return arr; 
+        };
+       
+        //move index 1(b) to index 2(c)
+        const tmpArr = moveArrayItemToNewIndex( markupData.notes, indexOfNote, lastIndex); // returns ["a", "c", "b", "d"]
+       
+        tmphwv.markupManager.loadMarkupData(markupData);
+        // tmphwv.markupManager._noteTextManager.loadData(markupData2)
+        console.log("0",markupData);
+
+       }else{        
+        // tmphwv.markupManager._noteTextManager.loadData(markupData1);
+        //console.log(tmphwv.markupManager._noteTextManager._noteTextElement.setHtmlContainer());
+        console.log("1",markupData);      
+
+       }
+       
+
+      
+       //console.log(markupData);
+    //    tmphwv.markupManager._noteTextManager._noteTextElement.setHtmlContainer("<p>test001</p>");
+     //   console.log(tmphwv.markupManager._noteTextManager._noteTextElement);
     // console.log(new window.Communicator.Markup._MarkupViewConstruction("test"));
        
     //const markupData = JSON.stringify(viewer.markupManager.exportMarkup());
 
-       
-      
-      
-    //  console.log(hwv && hwv.markupManager._noteTextManager._noteTextList);
-    // window.Sample.createViewer().then(function (viewer) {
-    //     //let newHwv = viewer;
-    //     tmphwv && tmphwv.markupManager._noteTextManager._noteTextList.push(activeNoteText)
-    //     //  console.log(tmphwv && tmphwv.markupManager._noteTextManager);
-    //      console.log(tmphwv);
-        
-    //     //hwv.start(tmphwv);
-    // }, function (errorReason) {
-    //     var errorDialog = new window.Communicator.Ui.UiDialog("content");
-    //     errorDialog.setTitle("Viewer Error");
-    //     errorDialog.setText(errorReason);
-    //     errorDialog.show();
-    // });
-    //console.log("clicked", activeNoteText);
+    
    }
 }, [props.clickedId])
 
