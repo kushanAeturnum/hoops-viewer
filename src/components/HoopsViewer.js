@@ -278,7 +278,7 @@ var comment_channel_id = "ef8fa86a-6239-11ec-b78e-e9b71b80d45f";
        
         if (tmphwv)
         {
-            console.log("hwv==============",JSON.stringify(tmphwv._noteTextManager._activeItem._selectionPosition)) 
+            //console.log("hwv==============",JSON.stringify(tmphwv._noteTextManager._activeItem._selectionPosition)) 
             let str = ''
           comments.forEach(comment => {
             str += `<div style="border-bottom: 1px solid #000; padding-bottom : 5px"><div class="d-flex">
@@ -313,11 +313,13 @@ var comment_channel_id = "ef8fa86a-6239-11ec-b78e-e9b71b80d45f";
 
 //             const comments = getCommentsByThread(JSON.stringify(tmphwv._noteTextManager._activeItem._selectionPosition))
 // console.log("commentsssss", comments)
-            tmphwv.markupManager._noteTextManager._noteTextElement._container.innerHTML = `<div style="height: 200px;overflow-y: auto;"
+
+            tmphwv.markupManager._noteTextManager._noteTextElement._container.innerHTML = 
+            `<div style="height: 200px;overflow-y: auto;"
              class="comment_wrapper">${str}</div>	<textarea></textarea>
-             <button id="create_comment"  onclick="${createComment()}" class="commentBtn">Comment</button>
+             <button id="create_comment" class="commentBtn">Comment</button>
              <button class="cancelBtn">Cancel</button>`;
-            //  document.getElementById('create_comment').onclick = createComment(tmphwv._noteTextManager._activeItem)
+              document.getElementById('create_comment').addEventListener('click',createComment)
            
         }
       
