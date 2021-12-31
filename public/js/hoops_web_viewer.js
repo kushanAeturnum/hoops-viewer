@@ -5366,7 +5366,8 @@ var h = function() {
 			})
 		})
 	};
-	f.prototype._loadMarkupData = async function (a,initial) {
+	f.prototype._loadMarkupData = async function (a, initial) {
+		this._noteTextManager.setActiveItem(null);
 		if (initial == 'initial')
 		{
 			const div = this._noteTextManager.getNoteTextElement()._container;
@@ -5375,8 +5376,9 @@ var h = function() {
 		else
 		{
 			const div = this._noteTextManager.getNoteTextElement()._container;
-			div.style.display= "block";
+			div.style.display = "block";		
 		}
+		b = this._noteTextManager.getActiveItem();
 		return __awaiter(this, void 0, void 0, function() {
 			var e, c
 			return __generator(this, function(b) {
@@ -26321,7 +26323,7 @@ d.Subscript3 = "\u00b3"
 				this._container = document.createElement("div");
 				this._container.className = "noteTextElement";
 				this._viewer = a;
-				var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwNjEyNDM4LCJpYXQiOjE2NDA1NzY0Mzh9.fYK--rxnrejA5jTg7AXIb0Vt3pN83SW-a15ucK8m_D8';
+				var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwOTU1NTg5LCJpYXQiOjE2NDA5MTk1ODl9.uaIj-cLBzSxxPWwOvxMwjHlUzDO6MvDPhq7PcMsrjFg';
 				// var comment_wrapper_container = document.createElement("div");
 		// comment_wrapper_container.className ="comment_wrapper_container"
 		// 	comments.forEach(function(c) {
@@ -26393,7 +26395,7 @@ console.log("active node text is", a._activeNoteText);
 					// alert("Button is clicked",a._activeNoteText);
 					
 					console.log(a._activeNoteText)
-					var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwNzkwODk2LCJpYXQiOjE2NDA3NTQ4OTZ9.chh94bJFzAQyqIwLoBk4wAnbZChHu2pp8y2qOSiRvIE';
+					var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwODY4NjQ1LCJpYXQiOjE2NDA4MzI2NDV9.k1CjbP9kWPYjgd9cDtrBKo8EmBXyjr3GNZfM3KiyWHQ';
 					var body = {
 						anchorLocation: JSON.stringify(a._activeNoteText._selectionPosition),
 						anchorType: "CELL",
@@ -26450,8 +26452,9 @@ console.log("active node text is", a._activeNoteText);
 					//console.log('cnaclelable container',a);
 					
 					var div = _container.path[1];
-					console.log(div);
-					await div.remove();
+					div.style.display = 'none';
+					// console.log(div);
+					//await div.remove();
 					//await console.log('cnaclelable container',_container.path[1]);
 					// console.log('cancel clikced');
 					//f.selectionManager.clear();
@@ -27640,7 +27643,6 @@ console.log("active node text is", a._activeNoteText);
 			return a
 		};
 		e.prototype.loadData = function (a) {
-			//console.log('aaaaaaaaaaaaaaaaaaa', a);
 			return __awaiter(this, void 0, void 0, function() {
 				var b, c, e, f, n, m = this;
 				return __generator(this, function(g) {
@@ -29492,7 +29494,7 @@ console.log("active node text is", a._activeNoteText);
 })(d.Util || (d.Util = {}))
 })(Communicator || (Communicator = {}));
 
-(function(d,xxx) {
+(function(d) {
 	(function (h) {
 		(function (f) {
 			var a;
@@ -29501,9 +29503,8 @@ console.log("active node text is", a._activeNoteText);
 			a[a.Hidden = 1] = "Hidden";
 			a[a.Shown = 2] = "Shown"
 			})(a = f._NoteTextEvent || (f._NoteTextEvent = {}));
-			
 			var e = function (c) {
-			
+
 				function b(b, a, e, f, h) {
 					var zz = []
 				var g = c.call(this) || this;
@@ -29522,11 +29523,13 @@ console.log("active node text is", a._activeNoteText);
 				g._selectionNormal = f;
 				g._partId =
 					h;
-				g._noteTextManager.addNote(g);
+					g._noteTextManager.addNote(g);
 			    g._init();
 				return g
 			}
-				__extends(b, c);		
+			
+				__extends(b, c);
+				
 			b.prototype._init = function() {
 				return __awaiter(this, void 0, void 0, function() {
 					var b, c, d, e, f, h = this				
@@ -29558,7 +29561,7 @@ console.log("active node text is", a._activeNoteText);
 					null === b || b.getStemInstanceId() !== this._stemInstanceId || a || this.hide()
 				}
 			};
-			b.prototype.updatePosition = function() {
+				b.prototype.updatePosition = function () {
 				return __awaiter(this, void 0, void 0, function() {
 					var b;
 					return __generator(this, function(a) {
@@ -29761,8 +29764,9 @@ console.log("active node text is", a._activeNoteText);
 			b.prototype.forJson = function() {
 				return this.toJson()
 			};
-			b._fromJson = function(a, c, e) {
-				if (!e.findById(a.uniqueId)) {
+				b._fromJson = function (a, c, e) {
+				if (!e.findById(a.uniqueId))
+				{
 					var g = d.Point3.fromJson(a.selectionPosition),
 						f = d.Point3.fromJson(a.selectionNormal);
 					c = new b(c, e, g, f, a.partId);
@@ -29784,7 +29788,8 @@ console.log("active node text is", a._activeNoteText);
 			};
 			b.className = "Communicator.Markup.Note.NoteText";
 			return b
-		}(h.MarkupItem);
+			}(h.MarkupItem);
+			
 		f.NoteText = e
 	})(h.Note || (h.Note = {}))
 })(d.Markup || (d.Markup = {}))
@@ -29795,7 +29800,6 @@ console.log("active node text is", a._activeNoteText);
 		
 	var f = function (a) {
 		function e(c) {
-			console.log("ddddddd", d);
 			var b = a.call(this) || this;
 			b._pinSphereMeshId = null;
 			b._pinStemMeshId = null;
@@ -29935,10 +29939,10 @@ console.log("active node text is", a._activeNoteText);
 			this._noteTextElement.hide();
 			this._noteTextElement = a
 		};
-		e.prototype.getNoteTextList = function() {
+		e.prototype.getNoteTextList = function () {
 			return this._noteTextList
 		};
-		e.prototype.addNote = function(a) {
+		e.prototype.addNote = function (a) {
 			this._noteTextList.push(a);
 			this._activeItem = a
 		};
@@ -29949,7 +29953,7 @@ console.log("active node text is", a._activeNoteText);
 		e.prototype.updatePinVisibility = function() {
 			return __awaiter(this, void 0, void 0, function() {
 				var a, b, d, e, f, h, m;
-				return __generator(this, function(c) {
+				return __generator(this, function (c) {
 					if (0 < this._noteTextList.length) {
 						a = [];
 						b = 0;
@@ -30003,8 +30007,9 @@ console.log("active node text is", a._activeNoteText);
 			function(a) {
 				this._activeItemHandle = a
 			};
-		e.prototype.getItemList = function() {
+		e.prototype.getItemList = function () {
 			return this._noteTextList
+		
 		};
 		e.prototype.selectPin = function(a) {
 			this._activeItem && this._activeItem.hide();
@@ -30022,13 +30027,25 @@ console.log("active node text is", a._activeNoteText);
 			}
 			return null
 		};
-		e.prototype.findById = function(a) {
+
+		//Check unique id with existing noteList, if uniques id is same it will remove from noteTextList array and then add it last
+		e.prototype.findById = function (a) {
+			console.log("noteTextLists are", this._noteTextList);
+			console.log("UniqueId is", a);
 			for (var b = 0, c = this._noteTextList; b < c.length; b++)
-				if (a === c[b].getUniqueId()) return !0;
+			{
+				if (a === c[b].getUniqueId())
+				{	
+					indexA = this._noteTextList.indexOf(c[b]);
+					console.log("Node Index is", indexA);
+					this._noteTextList.splice(indexA, 1);
+				}
+				}
+			for (var b = 0, c = this._noteTextList; b < c.length; b++)
+				if (a === c[b].getUniqueId())  return !0;
 			return !1
 		};
 		e.prototype.loadData = function (a) {
-			console.log('aaaaaaaaaaaaaaaaaaa', a);
 			for (var b = [], c = 0; c < a.length; c++) {
 				var e = d.Markup.Note.NoteText.fromJson(a[c], this._viewer, this).then(function(b) {
 					return null !== b
@@ -30036,7 +30053,6 @@ console.log("active node text is", a._activeNoteText);
 				b.push(e)
 				
 			}
-			console.log("bbbbbbb is", b);
 			return Promise.all(b)
 		};
 		e.prototype.exportMarkup = function() {
@@ -31545,7 +31561,7 @@ d.Quaternion = h
 				this._rectangle.setPosition(this.min);
 				this._rectangle.setSize(this._dim)
 			};
-			c.prototype.activate = function(a) {
+		c.prototype.activate = function (a) {
 				this.initialPosition.assign(a);
 				this.currentPosition.assign(a);
 				this.min.assign(a);
