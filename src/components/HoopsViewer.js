@@ -14,6 +14,30 @@ const markupData = {
      "lines": []
 };
 
+const markupData1 = {
+    "uniqueId": "fccbbfb3-27ba-4c59-86e5-1af03bbc1232",
+    "className": "Communicator.Markup.Note.NoteText",
+    "selectionPosition": {
+        x: 21.64840701029425, 
+        y: 12.547429047525839, 
+        z: -7.968706215170187
+    },
+    "selectionNormal": {
+        x: 0, y: -0.9777586050227087, z: 0.2097334267684736
+    },
+    "text": [
+        "yyyyyyyy"
+    ],
+    "color": {
+        "r": 255,
+        "g": 255,
+        "b": 255
+    },
+    "partId": 20
+}
+
+
+
 
 const HoopsViewer = (props) => {
    // console.log(window);
@@ -207,6 +231,12 @@ const HoopsViewer = (props) => {
         const tmpArr = moveArrayItemToNewIndex( markupData.notes, indexOfNote, lastIndex); // returns ["a", "c", "b", "d"]
        
         tmphwv.markupManager.loadMarkupData(markupData);
+       // console.log(tmphwv.markupManager._noteTextManager.getActiveItem().forJson());
+       // tmphwv.markupManager._noteTextManager.setActiveItem(markupData1);
+       // console.log(tmphwv.markupManager._noteTextManager.setActiveItem(markupData1).toJson());
+       // console.log(tmphwv.markupManager._noteTextManager.getActiveItem().forJson());
+       console.log(tmphwv.markupManager._noteTextManager.loadData(markupData1));
+        
         // tmphwv.markupManager._noteTextManager.loadData(markupData2)
         console.log("0",markupData);
 

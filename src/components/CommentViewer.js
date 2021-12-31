@@ -15,7 +15,7 @@ const markupData = {
 const CommentViewer = (props) => {
 
     const [data, setData] = useState([])
-    var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwOTA5MTQ0LCJpYXQiOjE2NDA4NzMxNDR9.KCi6dxrW9WT767pBF2OIIvzzSbQ4_pe1xEf5gVQslcE';
+    var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwOTU5MjM4LCJpYXQiOjE2NDA5MjMyMzh9.RQOMheM5_MRrx6B9QL73aOGUNx1xwPqg9GpqYCTzIW8';
     var prequote_rfq_id = "61c19377e13c01425d1c3a62";
     var comment_channel_id = "ef8fa86a-6239-11ec-b78e-e9b71b80d45f";
     useEffect(() => {
