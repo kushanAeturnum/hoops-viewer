@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`match snapshot 1`] = `
+<div
+  className="comment-viewer"
+>
+  <h1
+    className="comment-text"
+    data-testid="commentText"
+  >
+    Comments History
+  </h1>
+  <div
+    className="comment-thred"
+  />
+</div>
+`;

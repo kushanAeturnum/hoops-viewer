@@ -1,7 +1,7 @@
 import React ,{useEffect, useState} from 'react';
-import activeNoteText from '../data/activeNoteText'
-import { CustomOperator } from '../js/CustomOperator';
-import Emitter from '../service/emitter';
+import activeNoteText from '../../data/activeNoteText'
+import { CustomOperator } from '../../js/CustomOperator';
+import Emitter from '../../service/emitter';
 
 
 const markupData = {
@@ -152,7 +152,7 @@ const HoopsViewer = (props) => {
 
     let [isEventTriggered, setIsEventTriggered] = useState();
     let hwv = null;
-    var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQwOTcwMDkzLCJpYXQiOjE2NDA5MzQwOTN9.bPaST5qN-_a2DsAt_E30-GFHM9dVcDkPxYQTEdwOl8Y';
+    var token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b29kd2FyZGJzbXVzZXIxIiwiZXhwIjoxNjQxMjIwMDY4LCJpYXQiOjE2NDExODQwNjh9.POYXhBGl4vRSm6CGN80L1ywXuPwveoXafYYw7eaHYxY';
     var prequote_rfq_id = "61c19377e13c01425d1c3a62";
     var comment_channel_id = "ef8fa86a-6239-11ec-b78e-e9b71b80d45f";
   let ui = null;
@@ -244,8 +244,8 @@ const HoopsViewer = (props) => {
 
       hwv.start();
       Emitter.on('MOUSE_DOWN_TRIGGER', (newValue) => setIsEventTriggered(newValue));
-        console.log(hwv);
-        const myOperator = new CustomOperator(hwv);
+      console.log(hwv);
+      const myOperator = new CustomOperator(hwv);
       var myOperatorHandle = hwv.operatorManager.registerCustomOperator(myOperator);
       hwv.operatorManager.push(myOperatorHandle);
       var part = CustomOperator._partId
@@ -371,7 +371,7 @@ const renderCommentNoteContainer = () =>
  margin: 0;">${comment.messageBody}</div></div>`
 
     })
-    console.log("str", str)
+   // console.log("str", str)
 
 
     //             const comments = getCommentsByThread(JSON.stringify(tmphwv._noteTextManager._activeItem._selectionPosition))
