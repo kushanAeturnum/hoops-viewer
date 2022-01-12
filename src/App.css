@@ -9,3 +9,13 @@
   position: relative;
   outline: 1px solid black;
 }
+
+
+.commentViewer{
+  width: 30%;
+  float: right;
+}
+
+div#mainHoops-canvas-container {
+  width: 70% !important;
+}
